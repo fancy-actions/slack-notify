@@ -1,10 +1,19 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: slack-notify
+description: Slack notification as independent job after workflow execution
+author: fancy-actions
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  token:
+    description: "Github private access token(usually ${{secrets.GITHUB_TOKEN}})"
+    required: true
+  slackUrl:
+    required: true
+    description: "Slack notification url from incoming webhook integration https://api.slack.com/messaging/webhooks (https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX)"
+  channel:
+    required: true
+    description: "Which channel should be notified about build with #, example #general"
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: alert-triangle
+  color: gray-dark
